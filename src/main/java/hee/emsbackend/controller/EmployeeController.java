@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/employee")
+@RequestMapping("/api/employees")
 @AllArgsConstructor
 public class EmployeeController {
 
@@ -43,5 +43,12 @@ public class EmployeeController {
                                                         , @RequestBody EmployeeDto updatedEmployee) {
         EmployeeDto employeeDto = employeeService.updateEmployee(employeeId, updatedEmployee);
         return ResponseEntity.ok(employeeDto);
+    }
+
+    // Build Delete Employee REST API
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable("id") Long employeeId) {
+        employeeService.deleteEmployee(employeeId);
+        return ResponseEntity.ok("Employee deleted successfully");
     }
 }
